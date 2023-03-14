@@ -21,7 +21,13 @@ function Home() {
 			<Styles.ImagePokeBall src={Pokeball} alt="Pokeball" />
 			<Styles.Box>
 				<Styles.Logo src={Pokemon} alt="Logo do pokemon" />
-				<InputName />
+				<InputName
+					onKeyDown={(event) => {
+						if (event.key === 'Enter' && name.trim().length > 0) {
+							handleClick();
+						}
+					}}
+				/>
 				<Button onClick={handleClick} disabled={name.trim().length === 0}>
 					Ver cartas
 				</Button>
