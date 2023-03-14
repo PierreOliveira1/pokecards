@@ -6,6 +6,7 @@ export const Loading = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: fixed;
 
 	& > div {
 		width: 100px;
