@@ -7,6 +7,8 @@ export const Loading = styled.div`
 	justify-content: center;
 	align-items: center;
 	position: fixed;
+	z-index: 99;
+	background: rgba(0, 0, 0, 0.5);
 
 	& > div {
 		width: 100px;
