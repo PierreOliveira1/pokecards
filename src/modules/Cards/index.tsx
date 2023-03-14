@@ -7,7 +7,7 @@ import { Button } from './components/ui/Button';
 import { Card } from './components/common/Card';
 import { Header } from './components/common/Header';
 import { getPokemons } from '../../services/api';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Pokemon } from '../../dtos/pokemon';
 import { useNameState } from '../../stores/inputState';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,8 @@ function Cards() {
 
 	const [pokemons, setPokemons] = useState<Pokemon[]>();
 	const { data, isSuccess } = useQuery('pokemons', async () => await getPokemons());
-	const [disableButtonViewCard, setDisableButtonViewCard] = useState(false);
+	const buttonViewCard = useRef<HTMLButtonElement>(null);
+	const buttonShuffleCards = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -49,8 +50,8 @@ function Cards() {
 		if (pokemons) {
 			const newPokemons = pokemons.map((item, index) => {
 				if (count < 1 && !item.isViewed) {
-					if (index === pokemons.length - 1) {
-						setDisableButtonViewCard(true);
+					if (index === pokemons.length - 1 && buttonViewCard.current) {
+						buttonViewCard.current.disabled = true;
 					}
 					count++;
 					return { ...item, isViewed: true };
@@ -66,6 +67,10 @@ function Cards() {
 	function handleShuffleCards(event: MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
 
+		if (buttonShuffleCards.current) {
+			buttonShuffleCards.current.disabled = true;
+		}
+
 		if (pokemons) {
 			const isShuffle = pokemons
 				.filter((item) => item.isViewed === true)
@@ -79,6 +84,9 @@ function Cards() {
 
 			setTimeout(() => {
 				setPokemons(newPokemons);
+				if (buttonShuffleCards.current) {
+					buttonShuffleCards.current.disabled = false;
+				}
 			}, 2000);
 		}
 	}
@@ -106,10 +114,10 @@ function Cards() {
 						})}
 					{pokemons && (
 						<Styles.BoxButton>
-							<Button type="button" variant onClick={handleShuffleCards}>
+							<Button ref={buttonShuffleCards} type="button" variant onClick={handleShuffleCards}>
 								Embaralhar
 							</Button>
-							<Button type="button" onClick={handleViewCards} disabled={disableButtonViewCard}>
+							<Button ref={buttonViewCard} type="button" onClick={handleViewCards}>
 								Virar +1
 							</Button>
 						</Styles.BoxButton>
