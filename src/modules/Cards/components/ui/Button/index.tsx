@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, forwardRef, Ref } from 'react';
 import * as Styles from './styles';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,14 +6,16 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: boolean;
 }
 
-function Button(props: Props) {
+function ButtonComponent(props: Props, ref: Ref<HTMLButtonElement>) {
 	const { children, variant, ...rest } = props;
 
 	return (
-		<Styles.Button variant={variant} {...rest}>
+		<Styles.Button ref={ref} variant={variant} {...rest}>
 			{children}
 		</Styles.Button>
 	);
 }
+
+const Button = forwardRef(ButtonComponent);
 
 export { Button };
