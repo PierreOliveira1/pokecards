@@ -92,39 +92,37 @@ function Cards() {
 	}
 
 	return (
-		<>
+		<Styles.Container>
 			{!pokemons && <Loading />}
-			<Styles.Container>
-				<Header />
-				<Styles.ImagePokeBall src={Pokeball} alt="Pokeball" />
-				<Styles.ContainerCards>
-					{pokemons &&
-						pokemons.map((item) => {
-							return (
-								<Card
-									key={item.id}
-									color={item.color}
-									description={item.description}
-									imageUrl={item.imageUrl}
-									name={item.name}
-									points={item.points}
-									isView={item.isViewed}
-								/>
-							);
-						})}
-					{pokemons && (
-						<Styles.BoxButton>
-							<Button ref={buttonShuffleCards} type="button" variant onClick={handleShuffleCards}>
-								Embaralhar
-							</Button>
-							<Button ref={buttonViewCard} type="button" onClick={handleViewCards}>
-								Virar +1
-							</Button>
-						</Styles.BoxButton>
-					)}
-				</Styles.ContainerCards>
-			</Styles.Container>
-		</>
+			<Header />
+			<Styles.ImagePokeBall src={Pokeball} alt="Pokeball" />
+			<Styles.ContainerCards>
+				{pokemons &&
+					pokemons.map((item) => {
+						return (
+							<Card
+								key={item.id}
+								color={item.color}
+								description={item.description}
+								imageUrl={item.imageUrl}
+								name={item.name}
+								points={item.points}
+								isView={item.isViewed}
+							/>
+						);
+					})}
+				{pokemons && (
+					<Styles.BoxButton>
+						<Button ref={buttonShuffleCards} type="button" variant onClick={handleShuffleCards}>
+							Embaralhar
+						</Button>
+						<Button ref={buttonViewCard} type="button" onClick={handleViewCards}>
+							Virar +1
+						</Button>
+					</Styles.BoxButton>
+				)}
+			</Styles.ContainerCards>
+		</Styles.Container>
 	);
 }
 

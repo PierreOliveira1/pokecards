@@ -9,6 +9,7 @@ export const Container = styled.div`
 	justify-content: flex-start;
 	background-color: #1f1e1e;
 	position: relative;
+	overflow: auto;
 `;
 
 export const Logo = styled.img`
@@ -46,6 +47,7 @@ export const ContainerCards = styled.div`
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 10px;
 
 	@media (max-width: 1100px) {
 		grid-template-columns: repeat(4, 1fr);
