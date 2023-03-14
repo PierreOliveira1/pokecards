@@ -11,6 +11,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { Pokemon } from '../../dtos/pokemon';
 import { useNameState } from '../../stores/inputState';
 import { useNavigate } from 'react-router-dom';
+import { Loading } from '../../components/Loading';
 
 function Cards() {
 	const { name } = useNameState();
@@ -83,34 +84,39 @@ function Cards() {
 	}
 
 	return (
-		<Styles.Container>
-			<Header />
-			<Styles.ImagePokeBall src={Pokeball} alt="Pokeball" />
-			<Styles.ContainerCards>
-				{pokemons &&
-					pokemons.map((item) => {
-						return (
-							<Card
-								key={item.id}
-								color={item.color}
-								description={item.description}
-								imageUrl={item.imageUrl}
-								name={item.name}
-								points={item.points}
-								isView={item.isViewed}
-							/>
-						);
-					})}
-				<Styles.BoxButton>
-					<Button type="button" variant onClick={handleShuffleCards}>
-						Embaralhar
-					</Button>
-					<Button type="button" onClick={handleViewCards} disabled={disableButtonViewCard}>
-						Virar +1
-					</Button>
-				</Styles.BoxButton>
-			</Styles.ContainerCards>
-		</Styles.Container>
+		<>
+			{!pokemons && <Loading />}
+			<Styles.Container>
+				<Header />
+				<Styles.ImagePokeBall src={Pokeball} alt="Pokeball" />
+				<Styles.ContainerCards>
+					{pokemons &&
+						pokemons.map((item) => {
+							return (
+								<Card
+									key={item.id}
+									color={item.color}
+									description={item.description}
+									imageUrl={item.imageUrl}
+									name={item.name}
+									points={item.points}
+									isView={item.isViewed}
+								/>
+							);
+						})}
+					{pokemons && (
+						<Styles.BoxButton>
+							<Button type="button" variant onClick={handleShuffleCards}>
+								Embaralhar
+							</Button>
+							<Button type="button" onClick={handleViewCards} disabled={disableButtonViewCard}>
+								Virar +1
+							</Button>
+						</Styles.BoxButton>
+					)}
+				</Styles.ContainerCards>
+			</Styles.Container>
+		</>
 	);
 }
 
