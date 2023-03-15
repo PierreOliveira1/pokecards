@@ -6,7 +6,7 @@
 
 ## Descrição
 
-Este é um simples site feito em React para demonstração das minhas habilidades. Na sua tela inicial é preciso preencher um input com algum nome e em seguida clicar no botão ver cartas. Na segunda tela irá visualizar 5 cartas preenchiadas a partir da [POKEAPI](https://pokeapi.co/) e mais 3 cartas viradas. Pode-se manusear com dois botões, um é para virar uma das 3 cartas podendo ser clicado apenas 3 vezes e o outro botão é para embaralhar a ordem das cartas exibidas. Caso queira testar o site, clique [aqui](https://pokecards-pierreoliveira1.vercel.app/).
+Este é um simples site feito em React para demonstração das minhas habilidades. Na sua tela inicial é preciso preencher um input com algum nome e em seguida clicar no botão ver cartas. Na segunda tela irá visualizar 5 cartas preenchiadas a partir da [POKEAPI](https://pokeapi.co/) e mais 3 cartas viradas. Pode-se manusear com dois botões, um é para virar uma das 3 cartas podendo ser clicado apenas 3 vezes e o outro botão é para embaralhar a ordem das cartas exibidas. Caso queira testar o site, clique [aqui](https://pokecards.bohr.io/).
 
 ## Instalação
 
